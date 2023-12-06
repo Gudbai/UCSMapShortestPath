@@ -238,27 +238,6 @@ namespace UCSTest
             MainMap.Culture = "en";
         }
 
-        private double CalculateHaversineDistance(Location location1, Location location2)
-        {
-            const double EarthRadius = 6371000; // Earth radius in kilometers
-
-            double dLat = ToRadians(location2.Latitude - location1.Latitude);
-            double dLon = ToRadians(location2.Longitude - location1.Longitude);
-
-            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                       Math.Cos(ToRadians(location1.Latitude)) * Math.Cos(ToRadians(location2.Latitude)) *
-                       Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
-
-            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-
-            return EarthRadius * c;
-        }
-
-        private double ToRadians(double degrees)
-        {
-            return degrees * Math.PI / 180;
-        }
-
         private void MainMap_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
@@ -369,6 +348,27 @@ namespace UCSTest
                     MainMap.Children.Remove(pushpinToDelete);
                 }
             }
+        }
+
+        private double CalculateHaversineDistance(Location location1, Location location2)
+        {
+            const double EarthRadius = 6371000; // Earth radius in kilometers
+
+            double dLat = ToRadians(location2.Latitude - location1.Latitude);
+            double dLon = ToRadians(location2.Longitude - location1.Longitude);
+
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                       Math.Cos(ToRadians(location1.Latitude)) * Math.Cos(ToRadians(location2.Latitude)) *
+                       Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            return EarthRadius * c;
+        }
+
+        private double ToRadians(double degrees)
+        {
+            return degrees * Math.PI / 180;
         }
 
         private Dictionary<string, MapPolyline> connectionLines = new Dictionary<string, MapPolyline>();
@@ -507,51 +507,6 @@ namespace UCSTest
             }
         }
 
-        private void BtnRunUCS_Click(object sender, RoutedEventArgs e)
-        {
-            // Check if there are at least two pins on the map
-            if (MainMap.Children.OfType<Pushpin>().Count() < 2)
-            {
-                MessageBox.Show("Please add at least two pins on the map.");
-                return;
-            }
-
-            // Get start and goal pins from ComboBoxes
-            string startPin = CboxStart.Text;
-            string endPin = CboxEnd.Text;
-
-            // Check if both start and goal pins are selected
-            if (string.IsNullOrEmpty(startPin) || string.IsNullOrEmpty(endPin))
-            {
-                MessageBox.Show("Please select both start and goal pins.");
-                return;
-            }
-
-            // Run UCS algorithm
-            RunUCS(startPin, endPin);
-        }
-
-        private void RunUCS(string start, string goal)
-        {
-            var graph = BuildGraphFromPins();
-            var routes = UniformCostSearch.UCS(graph, CboxStart.Text, CboxEnd.Text);
-
-            // Sort routes based on cost in ascending order
-            routes.Sort((a, b) => a.cost.CompareTo(b.cost));
-
-            // Find the best (shortest) path
-            var bestPath = routes.FirstOrDefault();
-
-            // Highlight the best path by changing the color to green
-            HighlightBestPath(bestPath);
-
-            var printedPaths = new HashSet<string>();
-            foreach (var route in routes)
-            {
-                UniformCostSearch.PrintPath(route.path, route.cost, graph, TxbShortestPath, printedPaths);
-            }
-        }
-
         private void HighlightBestPath((List<string> path, int cost) bestPath)
         {
             if (bestPath != default)
@@ -630,6 +585,51 @@ namespace UCSTest
                 }
             }
             return graph;
+        }
+
+        private void RunUCS(string start, string goal)
+        {
+            var graph = BuildGraphFromPins();
+            var routes = UniformCostSearch.UCS(graph, CboxStart.Text, CboxEnd.Text);
+
+            // Sort routes based on cost in ascending order
+            routes.Sort((a, b) => a.cost.CompareTo(b.cost));
+
+            // Find the best (shortest) path
+            var bestPath = routes.FirstOrDefault();
+
+            // Highlight the best path by changing the color to green
+            HighlightBestPath(bestPath);
+
+            var printedPaths = new HashSet<string>();
+            foreach (var route in routes)
+            {
+                UniformCostSearch.PrintPath(route.path, route.cost, graph, TxbShortestPath, printedPaths);
+            }
+        }
+
+        private void BtnRunUCS_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if there are at least two pins on the map
+            if (MainMap.Children.OfType<Pushpin>().Count() < 2)
+            {
+                MessageBox.Show("Please add at least two pins on the map.");
+                return;
+            }
+
+            // Get start and goal pins from ComboBoxes
+            string startPin = CboxStart.Text;
+            string endPin = CboxEnd.Text;
+
+            // Check if both start and goal pins are selected
+            if (string.IsNullOrEmpty(startPin) || string.IsNullOrEmpty(endPin))
+            {
+                MessageBox.Show("Please select both start and goal pins.");
+                return;
+            }
+
+            // Run UCS algorithm
+            RunUCS(startPin, endPin);
         }
     }
 }
