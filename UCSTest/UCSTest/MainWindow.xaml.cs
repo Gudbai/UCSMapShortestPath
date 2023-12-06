@@ -127,7 +127,7 @@ namespace UCSTest
                 for (int i = 0; i < path.Count - 1; i++)
                 {
                     int edgeCost = graph.GetEdgeCost(path[i], path[i + 1]);
-                    resultStringBuilder.Append($"{path[i]} ({edgeCost}) -> ");
+                    resultStringBuilder.Append($"{path[i]} ({edgeCost} meters) -> ");
                 }
                 resultStringBuilder.AppendLine($"{path[path.Count - 1]}");
                 if (currentCost > 1000)
