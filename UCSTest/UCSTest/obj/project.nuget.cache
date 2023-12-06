@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8JSG2fe2PCBI+KoSzrne1DGUa8e8TrXDYfAnBpnKerOkyZcUJ2xguwGR+qJIOBXacWEeci6rtnSV6+zKAljCxg==",
+  "dgSpecHash": "pAZm2MkqUvkJgirpY7UQH75H+1+Shd512EZzjmMkfxxyWk5aiLSc5AJ2AfeHc7vGY+AWvuDEPqRQOwkb07/uIw==",
   "success": true,
-  "projectFilePath": "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\UCSTest.csproj",
+  "projectFilePath": "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\UCSTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aldien\\.nuget\\packages\\microsoft.maps.mapcontrol.wpf\\1.0.0.3\\microsoft.maps.mapcontrol.wpf.1.0.0.3.nupkg.sha512"
   ],

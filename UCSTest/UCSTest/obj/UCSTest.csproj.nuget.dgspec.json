@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\UCSTest.csproj": {}
+    "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\UCSTest.csproj": {}
   },
   "projects": {
-    "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\UCSTest.csproj": {
+    "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\UCSTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\UCSTest.csproj",
+        "projectUniqueName": "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\UCSTest.csproj",
         "projectName": "UCSTest",
-        "projectPath": "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\UCSTest.csproj",
+        "projectPath": "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\UCSTest.csproj",
         "packagesPath": "C:\\Users\\Aldien\\.nuget\\packages\\",
-        "outputPath": "D:\\Creation\\CSharp\\UCSTest\\UCSTest\\obj\\",
+        "outputPath": "D:\\Creation\\GitHub Stuff\\UCSMapShortestPath\\UCSTest\\UCSTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

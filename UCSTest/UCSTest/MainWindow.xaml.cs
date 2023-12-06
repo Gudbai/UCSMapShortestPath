@@ -130,7 +130,15 @@ namespace UCSTest
                     resultStringBuilder.Append($"{path[i]} ({edgeCost}) -> ");
                 }
                 resultStringBuilder.AppendLine($"{path[path.Count - 1]}");
-                resultStringBuilder.AppendLine("Total cost: " + currentCost);
+                if (currentCost > 1000)
+                {
+                    resultStringBuilder.AppendLine("Total cost: " + ((currentCost - (currentCost % 1000)) / 1000) + " kilometers and " + currentCost % 1000 + " meters (" + currentCost + " meters)");
+                }
+                else
+                {
+                    resultStringBuilder.AppendLine("Total cost: " + currentCost + " meters");
+
+                }
                 resultStringBuilder.AppendLine();
 
                 textBox.AppendText(resultStringBuilder.ToString());
@@ -384,8 +392,8 @@ namespace UCSTest
 
                     if (connectionParts.Length == 2)
                     {
-                        string startPoint = connectionParts[0].Trim();
-                        string endPoint = connectionParts[1].Trim();
+                        string startPoint = connectionParts[0].Trim().ToUpper();
+                        string endPoint = connectionParts[1].Trim().ToUpper();
 
                         // Form the connection key
                         string connectionKey = $"{startPoint} -> {endPoint}";
